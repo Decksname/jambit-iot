@@ -11,6 +11,8 @@ import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
 public class ButtonSensor implements Runnable {
 
 	private final String TAG = "ButtonSensor: ";
+	
+	public static String TOPIC_SENSE = "jambit-iot/max/sensors/button/";
 
 	private boolean running = false;
 
@@ -34,6 +36,8 @@ public class ButtonSensor implements Runnable {
 
 	public ButtonSensor() {
 		myButton.addTrigger(new GpioCallbackTrigger(new MyCallable<Void>(this)));
+		
+		
 	}
 
 	public void run() {

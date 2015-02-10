@@ -14,6 +14,8 @@ public class LedActuator{
 	private GpioController gpioController;
     private GpioPinDigitalMultipurpose ledPin;
     
+    public static String TOPIC_SENSE = "jambit-iot/max/sensors/led/";
+    public static String TOPIC_CONTROL = "jambit-iot/max/sensors/led/control";
     
     public LedActuator() {
         gpioController = GpioFactory.getInstance();
@@ -22,6 +24,7 @@ public class LedActuator{
 		        RaspiPin.GPIO_00, "led", PinMode.DIGITAL_OUTPUT);
 		
 		ledPin.setShutdownOptions(true); // unexport on shutdown
+		
 		
 		
 		System.out.println(TAG + "initialized");
