@@ -12,7 +12,8 @@ public class IoTDemo {
 		
 		ledActuator.pulse();
 
-		
+		Thread buttonSensorThread = new Thread(new ButtonSensor());
+		buttonSensorThread.start();
 
 	}
 }
