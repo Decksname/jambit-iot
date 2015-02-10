@@ -14,3 +14,5 @@ hs_err_pid*
 .settings/org.eclipse.m2e.core.prefs
 target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+.classpath
+.project
