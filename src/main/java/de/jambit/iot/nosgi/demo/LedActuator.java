@@ -25,7 +25,7 @@ public class LedActuator{
 		
 		ledPin.setShutdownOptions(true); // unexport on shutdown
 		
-		
+		MqttHandler.getInstance().publishMessageOnTopic(TOPIC_SENSE, IoTDemo.TOPIC_ANNOUNCEMENT);
 		
 		System.out.println(TAG + "initialized");
     }

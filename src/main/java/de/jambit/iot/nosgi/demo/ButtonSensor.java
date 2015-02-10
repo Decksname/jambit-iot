@@ -37,7 +37,7 @@ public class ButtonSensor implements Runnable {
 	public ButtonSensor() {
 		myButton.addTrigger(new GpioCallbackTrigger(new MyCallable<Void>(this)));
 		
-		
+		MqttHandler.getInstance().publishMessageOnTopic(TOPIC_SENSE, IoTDemo.TOPIC_ANNOUNCEMENT);
 	}
 
 	public void run() {
