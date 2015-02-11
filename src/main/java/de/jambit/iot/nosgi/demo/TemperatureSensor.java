@@ -26,6 +26,9 @@ public class TemperatureSensor implements Runnable {
         try {
             i2cbus = I2CFactory.getInstance(I2CBus.BUS_1);
             temperatureSensor = i2cbus.getDevice(0x40);
+            
+            MqttHandler.getInstance().publishMessageOnTopic(TOPIC_SENSE +"Celsius", IoTDemo.TOPIC_ANNOUNCEMENT);
+
  
         } catch (IOException e) {
             // TODO Auto-generated catch block
