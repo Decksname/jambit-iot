@@ -15,7 +15,7 @@ public class LedActuator{
     private GpioPinDigitalMultipurpose ledPin;
     
     public static String TOPIC_SENSE = "jambit-iot/max/sensors/led/";
-    public static String TOPIC_CONTROL = "jambit-iot/max/sensors/led/control";
+    public static String TOPIC_CONTROL = "jambit-iot/max/actuators/led/control";
     
     public LedActuator() {
         gpioController = GpioFactory.getInstance();
