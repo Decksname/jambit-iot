@@ -49,5 +49,18 @@ public class LedActuator{
 		System.out.println(TAG + "Led pulsing");
 	}
 	
+	public String getStateAsString() {
+		if(ledPin.isLow()){
+			return "off";
+		}else{
+			return "on";
+		}
+		
+	}
+	
+	public void publishState() {
+		MqttHandler.getInstance().publishMessageOnTopic(TOPIC_SENSE, this.getStateAsString());
+	}
+	
 	
 }

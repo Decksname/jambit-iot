@@ -61,4 +61,8 @@ public class ButtonSensor implements Runnable {
 	public String getStateAsString() {
 		return state.toString();
 	}
+
+	public void publishState() {
+		MqttHandler.getInstance().publishMessageOnTopic(TOPIC_SENSE, this.getStateAsString());
+	}
 }

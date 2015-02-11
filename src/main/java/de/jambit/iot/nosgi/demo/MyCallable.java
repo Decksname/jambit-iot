@@ -25,6 +25,7 @@ public class MyCallable<T> implements Callable<Void> {
 
 		if (oldState != newState) {
 			this.buttonSensor.setState(newState);
+			this.buttonSensor.publishState();
 		}
 
 		return null;
