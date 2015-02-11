@@ -1,6 +1,10 @@
 package de.jambit.iot.nosgi.demo;
 
-public class IoTDemo {
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+public class IoTDemo implements MqttCallback {
 
 	private final String TAG = "IoTDemo: ";
 	
@@ -12,6 +16,9 @@ public class IoTDemo {
 
 		System.out.println(TAG + "Jambit IoT Demo: Initialize");
 		
+		MqttHandler.getInstance().connect();
+		MqttHandler.getInstance().subscribeToTopic(ledActuator.TOPIC_CONTROL, this);
+		
 		ledActuator.pulse();
 
 		Thread buttonSensorThread = new Thread(new ButtonSensor());
@@ -19,5 +26,31 @@ public class IoTDemo {
 		
 		
 
+	}
+
+	public void connectionLost(Throwable cause) {
+		// TODO Auto-generated method stub
+		System.out.println(TAG + "now you should handle a Connection Lost");
+	}
+
+	public void messageArrived(String topic, MqttMessage message)
+			throws Exception {
+
+		if (message.toString().equals("on")) {
+			ledActuator.turnOn();
+		} else if (message.toString().equals("off")) {
+			ledActuator.turnOff();
+		}
+		else if (message.toString().equals("pulse")) {
+			ledActuator.pulse();
+		}else {
+			System.out.println(TAG + "Unknown control message: '" + message + "'");
+		}
+	}
+
+	
+	public void deliveryComplete(IMqttDeliveryToken arg0) {
+		// this one is annoying...
+//		System.out.println("deliveryComplete");
 	}
 }
